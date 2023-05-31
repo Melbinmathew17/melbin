@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends 'indexpage.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Edit Player</h4>
+                    <p class="card-description"> Basic form elements </p>
+                    <form class="forms-sample"  method="post" action="{% url 'updateplayer' dataid=products.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                         <label>Select position</label>
+                         <select class="form-control" name="playerposition">
+                             <option>Select position</option>
+                             {% for d in data %}
+                             <option>{{d.position}}</option>
+                             {% endfor %}
+                         </select>
+                        </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputName1">Player Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Player name" name="playername" value="{{products.playername}}">
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputName1">Age</label>
+                        <input type="text" class="form-control"  placeholder="Enter Age" name="age" value="{{products.age}}">
+                      </div>
+                         <div class="form-group">
+                        <label for="exampleInputName1">Club</label>
+                        <input type="text" class="form-control"  placeholder="Enter Club" name="club" value="{{products.club}}">
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="image">
+                          <img src="{{products.image.url}}" width="100px" height="100px">
+                      </div>
+
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}
